@@ -1,0 +1,41 @@
+.header-span{
+    color: var(--text-color-green);
+    font-weight: var(--font-weight-semibold);
+    font-size: 36px;
+}
+.header-span-2{
+    color: var(--text-color-white);
+    font-weight: var(--font-weight-semibold);
+    font-size: 140px;
+    line-height: 93%;
+}
+.header-bio{
+    .bio-title{
+        color: var(--text-color-white);
+    }
+    color: var(--text-color-gray);
+    font-size: var(--font-size-medium);
+    width: 70%;
+    text-align: start;
+    font-weight: 600;
+    line-height: 40px;
+}
+.header-list{
+    color: var(--text-color-gray);
+
+}
+.header-buttons{
+    color: var(--text-color-white);
+    .header-button{
+        padding: 4px 12px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        background-color: var(--button-background);
+        .header-social-icon{
+            color: var(--text-color-green);
+        }
+    }
+}

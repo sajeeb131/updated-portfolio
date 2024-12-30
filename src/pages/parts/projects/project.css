@@ -1,0 +1,13 @@
+.project-container{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+    row-gap: 2.5rem;
+    column-gap: 5rem;
+    
+}
+.third-grid{
+    margin-top: -50%;
+}
+.project-header-title{
+    font-size: var(--font-size-regular);
+}

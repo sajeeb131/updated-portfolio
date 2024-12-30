@@ -1,0 +1,30 @@
+
+.about-container{
+
+}
+.about-header-title{
+    color: var(--text-color-white);
+    font-size: var(--font-size-regular);
+    font-weight: var(--font-weight-bold);
+}
+.about-para{
+    font-size: var(--font-size-small);
+    color: var(--text-color-gray);
+    text-align: start;
+}
+.about-part{
+    width: 50%;
+
+}
+.about-right{
+    
+}
+
+.about-icon{
+    transform: scale(1.5);
+}
+.profile-image{
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}
