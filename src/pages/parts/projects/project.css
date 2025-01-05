@@ -11,3 +11,6 @@
 .project-header-title{
     font-size: var(--font-size-regular);
 }
+.project-grid{
+    cursor: pointer;
+}

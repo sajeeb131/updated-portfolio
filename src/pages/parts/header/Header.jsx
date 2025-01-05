@@ -1,9 +1,7 @@
 import React from 'react'
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
 
 import './header.css'
+import Button from '../../../components/Button';
 const Header = () => {
   return (
     <div className='flex flex-col items-start gap-10 header-container'>
@@ -29,20 +27,7 @@ const Header = () => {
                 </span>
             </div>
         </article>
-        <div className='flex flex-row gap-6 header-buttons'>
-            <button className='header-button'>
-                <FaGithub className='header-social-icon'/>
-                Github
-            </button>
-            <button className='header-button'>
-                <FaLinkedin className='header-social-icon'/>
-                LinkedIn
-            </button>
-            <button className='header-button'>
-                <MdEmail className='header-social-icon'/>
-                Email
-            </button>
-        </div>
+        <Button/>
     </div>
     );
 }
