@@ -20,8 +20,8 @@ const ProjectItem = ({project_name, project_description, project_image, project_
             <div className="flex flex-col items-start w-full pb-2 card-title">
                 <h2 className='text-white text-2xl mb-2 ubuntu-bold'>{project_name}</h2>
                 <div className={`flex flex-row items-center gap-2 w-fit card-technology`}>
-                    <div className='w-fit flex flex-row gap-1 items-center  px-2  javascript'><RiJavascriptFill /> <span>Javascript</span>
-                    </div>
+                    {<div className='w-fit flex flex-row gap-1 items-center  px-2  javascript'><RiJavascriptFill /> <span>Javascript</span>
+                    </div>}
                     <div className='w-fit flex flex-row gap-1 items-center px-2  react'><FaReact /> React
                     </div>
                     <div className='w-fit flex flex-row gap-1 items-center px-2  node'><FaNodeJs /> Node.js

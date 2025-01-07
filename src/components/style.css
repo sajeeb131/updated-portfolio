@@ -1,0 +1,19 @@
+.header-buttons{
+    color: var(--text-color-white);
+    .header-button{
+        padding: 4px 12px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        background-color: var(--button-background);
+        .header-social-icon{
+            color: var(--text-color-green);
+        };
+        transition: all 0.5s ease;
+    }
+}
+.header-button:hover{
+    transform: rotate(360deg);
+}
