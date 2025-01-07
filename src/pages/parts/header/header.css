@@ -6,7 +6,7 @@
 .header-span-2{
     color: var(--text-color-white);
     font-weight: var(--font-weight-semibold);
-    font-size: 140px;
+    font-size: calc(5rem + ((1vw - 7.68px) * 5.555555555555555));
     line-height: 93%;
 }
 .header-bio{
@@ -14,7 +14,7 @@
         color: var(--text-color-white);
     }
     color: var(--text-color-gray);
-    font-size: var(--font-size-medium);
+    font-size : calc(1.5rem +((1vw - 7.68px)* 1.0416666666666667));
     width: 70%;
     text-align: start;
     font-weight: 600;
@@ -37,5 +37,23 @@
         .header-social-icon{
             color: var(--text-color-green);
         }
+    }
+}
+.header-list-item-span{
+    font-size: calc(1rem + ((1vw - 7.68px) * 0.6944444444444444))
+}
+@media (max-width: 430px){
+    .header-span{
+        font-size: 24px;
+    }
+    .header-span-2{
+        text-align: left;
+    }
+    .header-bio{
+        width: 100%;
+        line-height: 1.33rem;
+    }
+    .header-list{
+        align-items: start;
     }
 }

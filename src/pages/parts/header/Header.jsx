@@ -16,7 +16,7 @@ const Header = () => {
             A full-stack web development enthusiast who loves problem solving.
         </article>
         <article className='flex flex-col items-start header-list'>
-            <div className="header-list-item">
+            <div className="flex flex-row header-list-item">
                 🚀
                 <span className="header-list-item-span">
                     MERN stack developer, currently learning DevOps

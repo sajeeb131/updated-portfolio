@@ -1,12 +1,95 @@
-.navbar-container{
+.navbar-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 16px;
     font-weight: var(--font-weight-semibold);
     color: var(--text-color-white);
     border-bottom: 0.5px solid rgb(30, 32, 41);
 }
 
-.navbar-links{
+.navbar-links {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.is-mobile {
+    display: none;
+    cursor: pointer;
+}
+
+.mobile-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen to the right */
+    width: 250px; /* Sidebar width */
+    height: 100vh;
+    background-color: #1e1e1e; /* Dark background for sidebar */
+    padding: 20px 0px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow on the left side */
+    transition: right 0.3s ease-in-out; /* Smooth transition */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mobile-links.open {
+    right: 0; /* Slide in from the right */
+    padding-left: 40px;
+    a{
+        margin-bottom: 20px;
+    }
     
+}
+
+/* Close Icon inside Sidebar */
+.close-icon {
+    padding: 0px 20px 10px 0px;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 20px; /* Add some spacing */
+    border-bottom: 1px solid ;
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* Overlay for better focus on the sidebar */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 999; /* Below the sidebar */
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.3s ease-in-out; /* Smooth fade-in */
+    pointer-events: none; /* Disable clicks when hidden */
+}
+
+.overlay.active {
+    opacity: 1; /* Fade in */
+    pointer-events: auto; /* Enable clicks when visible */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .is-mobile {
+        display: block;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .is-mobile {
+        display: none;
+    }
+
+    .mobile-links {
+        display: none;
+    }
 }
