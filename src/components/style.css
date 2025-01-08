@@ -17,3 +17,10 @@
 .header-button:hover{
     transform: rotate(360deg);
 }
+
+@media (max-width: 430px){
+    .header-buttons{
+        font-size: 18px;
+        gap: 20px;
+    }
+}

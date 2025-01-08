@@ -22,7 +22,10 @@
 }
 .header-list{
     color: var(--text-color-gray);
-
+}
+.header-list-item{
+    text-align: start;
+    gap: 3px;
 }
 .header-buttons{
     color: var(--text-color-white);

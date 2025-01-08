@@ -14,3 +14,14 @@
 .project-grid{
     cursor: pointer;
 }
+
+@media (max-width:430px) {
+    .project-container{
+        display: flex;
+        flex-direction: column;
+        column-gap: 20px;
+    }
+    .third-grid{
+        margin-top: 0;
+    }
+}

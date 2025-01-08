@@ -6,7 +6,7 @@ import About from './parts/about/About';
 import Project from './parts/projects/Project';
 import Contact from './parts/contact/Contact';
 import Footer from '../components/footer/Footer';
-
+import './style.css'
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
