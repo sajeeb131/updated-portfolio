@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import ProjectItem from '../../../components/ProjectItem/ProjectItem'
 import marvelImage from '../../../assets/marvel.png'
 import ClarexImage from '../../../assets/Clarex_co.png'
+import SpeakSail from '../../../assets/speaksail.png'
 import { Navigate } from 'react-router-dom'
 const Project = () => {
     const navigate = useNavigate();
@@ -12,11 +13,11 @@ const Project = () => {
             case 'marvel':
                 navigate('/404')
                 break;
-            case 'portfolio':
-                window.location.href = ('/https://github.com/sajeeb131/Portfolio')
+            case 'clarex':
+                window.location.href = ('https://clarex.co/')
                 break;
             case 'speaksail':
-                window.location.href = ('https://github.com/sajeeb131/SpeakSail')
+                window.location.href = ('https://speaksail-client.onrender.com/')
                 break;
             case 'default':
                 return;
@@ -36,9 +37,9 @@ const Project = () => {
             <ProjectItem project_name="marvel-be you" project_image={marvelImage} project_description="A wesbite where your brand can find the best influencer to advertise your product." project_link='' technologies_used={''}/>
         </article>
         <article className='project-grid third-grid' onClick={()=>handleNavigate('speaksail')}>
-            <ProjectItem project_name="SpeakSail" project_image={marvelImage} project_description="A platform to primary school students to learn and practice their English language skills." project_link='' technologies_used={''}/>
+            <ProjectItem project_name="SpeakSail" project_image={SpeakSail} project_description="A platform to primary school students to learn and practice their English language skills." project_link='' technologies_used={''}/>
         </article>
-        <article className='project-grid' onClick={()=>handleNavigate('portfolio')}>
+        <article className='project-grid' onClick={()=>handleNavigate('clarex')}>
             <ProjectItem project_name="Clarex Ltd." project_image={ClarexImage} project_description="A place where athletes can connect with each other and find the best training facilities." project_link='' technologies_used=''/>
         </article>
     </section>

@@ -20,7 +20,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Links */}
-      <div className='navbar-links hidden md:flex flex-row gap-6'>
+      <div className='navbar-links hidden md:flex flex-row gap-6 invisible' >
         <a href='#'>Home</a>
         <a href='#'>Projects</a>
         <a href='#'>Skills</a>
