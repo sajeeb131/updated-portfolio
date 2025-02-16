@@ -16,7 +16,7 @@ const Button = ({prop}) => {
         <Link to='https://www.linkedin.com/in/sajeeb-sarkar-094a61311/' className='header-button'>
             <FaLinkedin className='header-social-icon'/>
             LinkedIn
-        </Link>
+        </Link> 
         <Link className='header-button'>
             <MdEmail className='header-social-icon'/>
             Email

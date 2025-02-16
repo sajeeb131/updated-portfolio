@@ -1,6 +1,7 @@
 @media (max-width: 430px) {
     .home-elements{
-        padding-left:30px ;
+        gap: 75px;
+        padding-left:20px ;
         padding-right:20px ;
     }
 }

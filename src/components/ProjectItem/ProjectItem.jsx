@@ -24,8 +24,8 @@ const ProjectItem = ({project_name, project_description, project_image, project_
                     </div>}
                     <div className='w-fit flex flex-row gap-1 items-center px-2  react'><FaReact /> React
                     </div>
-                    <div className='w-fit flex flex-row gap-1 items-center px-2  node'><FaNodeJs /> Node.js
-                    </div>
+                    {/* <div className='w-fit flex flex-row gap-1 items-center px-2  node'><FaNodeJs /> Node.js
+                    </div> */}
                 </div>
             </div>
             <div className="my-2 text-gray text-start card-info">
