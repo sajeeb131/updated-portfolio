@@ -24,7 +24,6 @@ const Navbar = () => {
         <a href='#'>Home</a>
         <a href='#'>Projects</a>
         <a href='#'>Skills</a>
-        <a href='#'>Sajeeb Great</a>
       </div>
 
       {/* Mobile Menu Icon */}
