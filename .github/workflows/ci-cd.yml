@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for React App
+name: CI/CD Pipeline for portfolio App
 
 on:
   push:
@@ -9,26 +9,26 @@ on:
 jobs:
   lint-test-build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Run ESLint
         run: npx eslint --ext .js,.jsx,.ts,.tsx src/ || echo "No ESLint configuration found"
-      
+
       - name: Run unit tests with Jest
         run: npm test -- --coverage --watchAll=false --passWithNoTests
-        
+
       - name: Upload test coverage reports
         uses: actions/upload-artifact@v4
         if: success()
@@ -36,46 +36,46 @@ jobs:
           name: test-coverage
           path: coverage/
           if-no-files-found: ignore
-          
+
       - name: Build project
         run: npm run build
         env:
-          CI: false # This prevents build failures on warnings
-      
+          CI: false
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-files
           path: build/
-  
+
   e2e-test:
     runs-on: ubuntu-latest
     needs: lint-test-build
-    if: false  # Set to true once you've installed Cypress
-    
+    if: false  # Flip to `true` once Cypress is configured
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Install Cypress
         run: npm install cypress --save-dev
-        
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           build: npm run build
           start: npm start
           wait-on: 'http://localhost:3000'
-        
+
       - name: Upload Cypress screenshots
         uses: actions/upload-artifact@v4
         if: always()
@@ -83,7 +83,7 @@ jobs:
           name: cypress-screenshots
           path: cypress/screenshots
           if-no-files-found: ignore
-          
+
       - name: Upload Cypress videos
         uses: actions/upload-artifact@v4
         if: always()
@@ -93,66 +93,103 @@ jobs:
           if-no-files-found: ignore
 
   deploy-preview:
-    needs: [lint-test-build]
+    needs: lint-test-build
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
-      
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-      
+
       - name: Download build folder
         uses: actions/download-artifact@v4
         with:
           name: build-files
           path: build
-      
+
       - name: Deploy to Vercel
         run: |
-          URL=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})
-          echo "Preview deployed to: $URL"
+          URL=$(vercel deploy --confirm --prebuilt --yes --token=${{ secrets.VERCEL_TOKEN }})
           echo "PREVIEW_URL=$URL" >> $GITHUB_ENV
-      
+
       - name: Comment on PR with Preview URL
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issue_number = context.issue.number;
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: issue_number,
+              issue_number: context.issue.number,
               body: `✅ Preview deployment is ready! URL: ${process.env.PREVIEW_URL}`
-            });
+            })
 
   deploy-production:
-    needs: [lint-test-build]
+    needs: lint-test-build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
-      
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      
+
       - name: Download build folder
         uses: actions/download-artifact@v4
         with:
           name: build-files
           path: build
-      
-      - name: Deploy to Vercel
-        run: |
-          vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel (Production)
+        run: vercel deploy --prod --confirm --prebuilt --yes --token=${{ secrets.VERCEL_TOKEN }}
+
+  docker-build-push:
+    needs: lint-test-build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/portfolio-app
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
