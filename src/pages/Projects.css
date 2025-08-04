@@ -1,0 +1,108 @@
+.projects-container {
+  padding: 2rem 5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.projects-header {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.projects-header h1 {
+  font-family: "Ubuntu", serif;
+  font-weight: 700;
+  font-size: var(--font-size-regular);
+  color: var(--text-color-white);
+  margin-bottom: 1rem;
+}
+
+.projects-header p {
+  color: var(--text-color-gray);
+  font-size: var(--font-size-small);
+  max-width: 600px;
+}
+
+.projects-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background-color: var(--button-background);
+  color: var(--text-color-gray);
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.filter-btn.active {
+  background-color: var(--text-color-green);
+  color: #000;
+}
+
+.projects-grid {
+  width: 100%;
+}
+
+.projects-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Media Queries */
+@media (max-width: 48em) {
+  .projects-container {
+    padding: 2rem;
+    max-width: 100%;
+  }
+  
+  .projects-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-container {
+    padding: 2rem;
+  }
+  
+  .projects-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .projects-container {
+    padding: 1.5rem;
+  }
+  
+  .projects-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .projects-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+}

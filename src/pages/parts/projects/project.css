@@ -15,6 +15,21 @@
     cursor: pointer;
 }
 
+.project-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.project-link .arrow {
+    transition: transform 0.3s ease;
+}
+
+.project-link:hover .arrow {
+    transform: translateX(3px);
+}
+
 @media (max-width:430px) {
     .project-container{
         display: flex;

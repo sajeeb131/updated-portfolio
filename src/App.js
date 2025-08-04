@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './components/navbar/Navbar';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home';
+import Projects from './pages/Projects';
 import NotFoundPage from './pages/error/NotFoundPage';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/projects" element={<Projects/>} />
           <Route path="/404" element={<NotFoundPage/>} />
         </Routes>
       </Router>

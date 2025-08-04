@@ -1,0 +1,175 @@
+.project-card {
+  background-color: var(--secondary-background-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.project-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  background-color: var(--text-color-green);
+  border-radius: 8px;
+  color: #000;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.project-link:hover {
+  transform: scale(1.1);
+}
+
+.project-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-content h3 {
+  font-family: "Ubuntu", serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--text-color-white);
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tech-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.tech-tag.javascript {
+  background: rgba(207, 204, 38, 0.25);
+  color: yellow;
+}
+
+.tech-tag.react {
+  background-color: rgba(38, 159, 207, 0.25);
+  color: skyblue;
+}
+
+.tech-tag.nodejs {
+  background: rgba(104, 207, 38, 0.25);
+  color: greenyellow;
+}
+
+.tech-tag.php {
+  background: rgba(138, 43, 226, 0.25);
+  color: #8a2be2;
+}
+
+.tech-tag.mongodb {
+  background: rgba(76, 175, 80, 0.25);
+  color: #4caf50;
+}
+
+.tech-tag.mysql {
+  background: rgba(33, 150, 243, 0.25);
+  color: #2196f3;
+}
+
+.tech-tag.docker {
+  background: rgba(33, 150, 243, 0.25);
+  color: #2196f3;
+}
+
+.project-content p {
+  color: var(--text-color-gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+  margin-top: auto;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .project-image {
+    height: 180px;
+  }
+  
+  .project-content h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .project-image {
+    height: 160px;
+  }
+  
+  .project-content {
+    padding: 1rem;
+  }
+  
+  .project-content h3 {
+    font-size: 1.2rem;
+  }
+  
+  .tech-tag {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+  }
+}

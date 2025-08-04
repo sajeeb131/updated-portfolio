@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './navbar.css';
+import { Link, useLocation } from 'react-router-dom';
 import { MdOutlineSegment, MdClose } from "react-icons/md";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -16,14 +18,13 @@ const Navbar = () => {
   return (
     <nav className='px-4 md:px-20 py-6 navbar-container'>
       <div className='navbar-logo'>
-        <a href="">Sajeeb</a>
+        <Link to="/">Sajeeb</Link>
       </div>
 
       {/* Desktop Links */}
       <div className='navbar-links hidden md:flex flex-row gap-6' >
-        <a href='#'>Home</a>
-        <a href='#'>Projects</a>
-        <a href='#'>Skills</a>
+        <Link to='/' className={location.pathname === '/' ? 'active-link' : ''}>Home</Link>
+        <Link to='/projects' className={location.pathname === '/projects' ? 'active-link' : ''}>Projects</Link>
       </div>
 
       {/* Mobile Menu Icon */}
@@ -44,9 +45,8 @@ const Navbar = () => {
         </div>
 
         {/* Sidebar Links */}
-        <a href='#' onClick={closeMobileMenu}>Home</a>
-        <a href='#' onClick={closeMobileMenu}>Projects</a>
-        <a href='#' onClick={closeMobileMenu}>Skills</a>
+        <Link to='/' className={location.pathname === '/' ? 'active-link' : ''} onClick={closeMobileMenu}>Home</Link>
+        <Link to='/projects' className={location.pathname === '/projects' ? 'active-link' : ''} onClick={closeMobileMenu}>Projects</Link>
       </div>
 
       {/* Overlay */}
